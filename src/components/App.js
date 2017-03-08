@@ -2,16 +2,22 @@ import React from 'react';
 import CreateToDo from './create-todo'
 import ToDosList from './todos-list';
 
-const todos = [
-  {
-    task: 'make React tutorial',
-    isCompleted: false
-  },
-  {
-    task: 'eat dinner',
-    isCompleted: true
-  }
-]
+// const todos = [
+//   {
+//     task: 'make React tutorial',
+//     isCompleted: false
+//   },
+//   {
+//     task: 'eat dinner',
+//     isCompleted: true
+//   }
+// ];
+
+let todos = JSON.parse(localStorage.getItem("todooo"));
+
+if(!todos) {
+  todos = [];
+}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -44,6 +50,10 @@ export default class App extends React.Component {
     const foundTodo = _.find(this.state.todos, todo => todo.task === task);
     foundTodo.isCompleted = !foundTodo.isCompleted;
     this.setState({todos: this.state.todos});
+    ///
+        let sobj = JSON.stringify(this.state.todos);
+        localStorage.setItem('todooo', sobj);
+    ///
   }
 
   createTask(task) {
@@ -52,16 +62,29 @@ export default class App extends React.Component {
       isCompleted: false
     });
     this.setState({todos: this.state.todos});
+    ///
+        let sobj = JSON.stringify(this.state.todos);
+        localStorage.setItem('todooo', sobj);
+    ///
   }
 
   saveTask(oldTask, newTask) {
     const foundTodo = _.find(this.state.todos, todo => todo.task === oldTask);
     foundTodo.task = newTask;
     this.setState({todos: this.state.todos});
+    ///
+        let sobj = JSON.stringify(this.state.todos);
+        localStorage.setItem('todooo', sobj);
+    ///
   }
 
   deleteTask(taskToDelete) {
     _.remove(this.state.todos, todo => todo.task === taskToDelete);
     this.setState({todos: this.state.todos});
+    ///
+        let sobj = JSON.stringify(this.state.todos);
+        localStorage.setItem('todooo', sobj);
+    ///
   }
+
 }

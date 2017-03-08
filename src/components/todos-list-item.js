@@ -63,8 +63,10 @@ export default class ToDosListItem extends React.Component {
     );
   }
 
+
   onEditClick() {
     this.setState({isEditing: true});
+    // console.log(todos);
   }
 
   onCanselClick() {
@@ -79,4 +81,5 @@ export default class ToDosListItem extends React.Component {
     this.props.saveTask(oldTask, newTask);
     this.setState({isEditing: false});
   }
+
 }

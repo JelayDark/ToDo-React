@@ -42,7 +42,6 @@ export default class CreateToDo extends React.Component {
     this.setState({error: null});
     this.props.createTask(task);
     this.refs.createInput.value = '';
-
     // console.log(this.props.createTask);
   }
 
